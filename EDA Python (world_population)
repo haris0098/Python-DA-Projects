@@ -1,0 +1,21 @@
+import pandas as pd
+import matplotlib.pyplot as plt 
+import seaborn as sns
+
+df= pd.read_csv(r"C:\Users\ZES\Downloads\world_population.csv")
+df.info()
+pd.set_option('display.float_format', lambda x: '%.2f' % x)
+
+df.describe()
+df.isnull().sum()
+df.nunique()
+df.sort_values(by="2022 Population").head()
+df.sort_values(by="2022 Population",ascending=False).head(10)
+df.sort_values(by="World Population Percentage",ascending=False).head(10)
+df.corr()
+
+sns.heatmap(df.corr(), annot = True)
+plt.rcParams['figure.figsize'] = (20,7)
+plt.show()
+
+df.groupby('Continent').mean().sort_values(by="2022 Population",ascending=False)
